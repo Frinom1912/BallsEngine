@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\GraphicsLib">
+      <UniqueIdentifier>{a8db5041-0356-4d67-ae47-cf3b4be5f689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\GraphicsLib">
+      <UniqueIdentifier>{c1e0cd83-cbf5-48e5-821c-4cd28e7438e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -21,6 +27,12 @@
     <ClInclude Include="pch.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Файлы заголовков\GraphicsLib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -28,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vulkanzor.cpp">
+      <Filter>Исходные файлы\GraphicsLib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
