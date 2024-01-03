@@ -40,7 +40,7 @@ if (DEFINED GLFW_PATH)
     set(GLFW_LIB "${GLFW_PATH}/lib-vc2022") # 2.1 Update lib-vc2019 to use same version as your visual studio
   elseif (CMAKE_GENERATOR STREQUAL "MinGW Makefiles")
     message(STATUS "USING MINGW")
-    set(GLFW_LIB "${GLFW_PATH}/lib-mingw-w64") # 2.1 make sure matches glfw mingw subdirectory
+    set(GLFW_LIB "${GLFW_PATH}/lib-mingw-w64") # 2.2 make sure matches glfw mingw subdirectory
   endif()
 else()
   find_package(glfw3 3.3 REQUIRED)
@@ -53,6 +53,13 @@ else()
     message(STATUS "Using glfw lib at: ${GLFW_LIB}")
 endif()
  
+# 3. Set BOOST_ROOT in .env.cmake to target Boost version
+# should only include components ideally, but idc for now
+find_package(Boost 1.84.0 REQUIRED)  #to see the auto assigned variables https://cmake.org/cmake/help/latest/module/FindBoost.html#result-variables
+if (NOT Boost_FOUND)
+    message(FATAL_ERROR "Boost not installed, or BOOST_ROOT is not specified")
+endif()
+
 include_directories(external)
 
 file(GLOB_RECURSE LIB_SOURCES lib_src/*.cpp)
@@ -88,12 +95,14 @@ if (WIN32)
     ${Vulkan_INCLUDE_DIRS}
     ${GLFW_INCLUDE_DIRS}
     ${GLM_PATH}
+    ${Boost_INCLUDE_DIRS}
     )
 
  
   target_link_directories(${PROJECT_NAME}_lib PUBLIC
     ${Vulkan_LIBRARIES}
     ${GLFW_LIB}
+    ${Boost_LIBRARY_DIRS}
   )
 
   target_link_libraries(${PROJECT_NAME}_lib glfw3 vulkan-1)
