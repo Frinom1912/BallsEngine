@@ -1,4 +1,4 @@
-set(GLFW_PATH PATH_TO_BUILT_GLFW)
-set(GLM_PATH PATH_TO_GLM_HERE)
-set(VULKAN_SDK_PATH  PATH_TO_VERSION_OF_SDK)
- 
+set(GLFW_PATH "D:/hehe/haha/glfw")
+set(GLM_PATH "D:/hehe/haha/glm")
+set(VULKAN_SDK_PATH  "D:/hehe/haha/VulkanSDK")
+set(BOOST_ROOT  "D:/hehe/haha/boost_1_84_0")

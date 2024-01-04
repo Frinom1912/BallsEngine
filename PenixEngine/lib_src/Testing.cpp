@@ -8,8 +8,14 @@
 #include <glm/mat4x4.hpp>
 
 #include <iostream>
+#include <boost/random.hpp>
 
 int test() {
+    boost::random::mt19937 rng;
+    boost::random::uniform_int_distribution<> six(1, 6);
+    int die_cast = six(rng);
+    std::cout << "die_cast: " << die_cast << "\n";
+
     glfwInit();
 
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
