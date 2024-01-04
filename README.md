@@ -8,4 +8,10 @@ Build outputs to root/x64/{env}
 
 Green master, full coverage :)
 
-Copy env.example.cmake to env.cmake
+Copy env.example.cmake to env.cmake	
+
+Startup:
+
+Download gfwl, glm, Boost, VulkanSDK, cpplint (pip install cpplint)
+
+Create env.cmake
