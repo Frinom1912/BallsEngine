@@ -63,21 +63,22 @@ endif()
 include_directories(external)
 
 file(GLOB_RECURSE LIB_SOURCES lib_src/*.cpp)
-   
 
-add_library(${PROJECT_NAME}_lib ${LIB_SOURCES})
+set(PROJECT_NAME_LIB ${PROJECT_NAME}_lib)
 
-add_library(${PROJECT_NAME}_lib::lib_1 ALIAS ${PROJECT_NAME}_lib)
+add_library(PROJECT_NAME_LIB ${LIB_SOURCES})
+
+add_library(PROJECT_NAME_LIB::lib_1 ALIAS PROJECT_NAME_LIB)
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
-target_compile_features(${PROJECT_NAME}_lib PUBLIC cxx_std_20)
+target_compile_features(PROJECT_NAME_LIB PUBLIC cxx_std_20)
  
 set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/build")
- 
+
 if (WIN32)
   message(STATUS "CREATING BUILD FOR WINDOWS")
  
@@ -90,7 +91,7 @@ if (WIN32)
     )
   endif()
  
-  target_include_directories(${PROJECT_NAME}_lib PUBLIC
+  target_include_directories(PROJECT_NAME_LIB PUBLIC
     ${PROJECT_SOURCE_DIR}/lib_src
     ${Vulkan_INCLUDE_DIRS}
     ${GLFW_INCLUDE_DIRS}
@@ -99,17 +100,17 @@ if (WIN32)
     )
 
  
-  target_link_directories(${PROJECT_NAME}_lib PUBLIC
+  target_link_directories(PROJECT_NAME_LIB PUBLIC
     ${Vulkan_LIBRARIES}
     ${GLFW_LIB}
     ${Boost_LIBRARY_DIRS}
   )
 
-  target_link_libraries(${PROJECT_NAME}_lib glfw3 vulkan-1)
+  target_link_libraries(PROJECT_NAME_LIB glfw3 vulkan-1)
 
   target_link_libraries(${PROJECT_NAME}
     PRIVATE
-        ${PROJECT_NAME}_lib::lib_1
+        PROJECT_NAME_LIB::lib_1
   )
 elseif (UNIX)
     message(STATUS "CREATING BUILD FOR UNIX")
@@ -118,4 +119,6 @@ elseif (UNIX)
     )
     target_link_libraries(${PROJECT_NAME} glfw ${Vulkan_LIBRARIES})
 endif()
+
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD COMMAND cpplint ${SOURCES})
  
