@@ -12,6 +12,6 @@ Copy env.example.cmake to env.cmake
 
 Startup:
 
-Download gfwl, glm, Boost, VulkanSDK, cpplint
+Download gfwl, glm, Boost, VulkanSDK, cpplint (pip install cpplint)
 
 Create env.cmake
