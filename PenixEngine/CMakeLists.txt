@@ -66,13 +66,13 @@ file(GLOB_RECURSE LIB_SOURCES lib_src/*.cpp)
 
 set(PROJECT_NAME_LIB ${PROJECT_NAME}_lib)
 
-add_library(PROJECT_NAME_LIB ${LIB_SOURCES})
+add_library(PROJECT_NAME_LIB ${LIB_SOURCES} "lib_src/GraphicsLib/VulkanTest.h")
 
 add_library(PROJECT_NAME_LIB::lib_1 ALIAS PROJECT_NAME_LIB)
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES} "lib_src/GraphicsLib/VulkanTest.h")
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 target_compile_features(PROJECT_NAME_LIB PUBLIC cxx_std_20)
