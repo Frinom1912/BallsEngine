@@ -12,4 +12,4 @@ endif()
 project ("MegaEngine")
 
 # Включите подпроекты.
-add_subdirectory ("PenixEngine")
+add_subdirectory ("Engine")
