@@ -1,8 +1,8 @@
-#include <iostream>
+
 #include "main.h"
 #include "Testing.h"
 
 int main() {
-    test();
+    testVulkan();
     return 0;
 }
